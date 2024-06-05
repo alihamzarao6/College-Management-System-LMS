@@ -260,10 +260,8 @@ const Faculty = () => {
       }
     };
 
-    if (!allSubjects.length) {
-      fetchData();
-    }
-  }, [allSubjects]);
+    fetchData();
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -280,10 +278,8 @@ const Faculty = () => {
       }
     };
 
-    if (!allDepartments.length) {
-      fetchData();
-    }
-  }, [allDepartments]);
+    fetchData();
+  }, []);
 
   useEffect(() => {
     const fetchTeacherSubjects = async () => {

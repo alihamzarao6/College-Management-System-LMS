@@ -22,7 +22,7 @@ router.post("/login", async (req, res) => {
 
     const token = jwt.sign(
       { userId: user.id, userType: "faculty", userDetails },
-      process.env.JWT_KEY,
+      'JWTSECRETKEY',
       {
         expiresIn: "7d",
       }

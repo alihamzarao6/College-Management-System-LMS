@@ -19,9 +19,11 @@ router.post("/login", async (req, res) => {
       employeeId: user.loginid,
     });
 
+    // console.log(process.env.JWTSECRETKEY);
+
     const token = jwt.sign(
       { userId: user.loginid, userType: "admin", userDetails },
-      process.env.JWT_KEY,
+      'JWTSECRETKEY',
       {
         expiresIn: "7d",
       }

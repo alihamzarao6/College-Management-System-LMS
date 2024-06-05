@@ -155,7 +155,6 @@ router.get("/student", async (req, res) => {
       message: "Quizzes fetched successfully",
       quizzes,
     });
-    
   } catch (error) {
     console.error(error.message);
     res.status(500).json({ success: false, message: "Internal Server Error" });
@@ -168,12 +167,12 @@ router.post("/submit", async (req, res) => {
     const { quizId, answers } = req.body;
     const studentId = req.user.userId;
 
-      if (!answers) {
-        return res.status(400).json({
-          success: false,
-          message: "Please provide at least 1 Answer.",
-        });
-      }
+    if (!answers) {
+      return res.status(400).json({
+        success: false,
+        message: "Please provide at least 1 Answer.",
+      });
+    }
 
     const quizStatus = await Quiz.findOne({
       _id: quizId,
@@ -282,13 +281,12 @@ router.get("/result/teacher/:quizId", async (req, res) => {
         totalMarks: quiz.totalMarks,
         obtainedMarks: 0,
         completed: false,
-        title: quiz.title
+        title: quiz.title,
       },
       studentsSupposedToAttempt: studentsSupposedToAttempt.map((student) => {
-        const quizStudent = quiz.students.find(
-          (quizStudent) =>
-            quizStudent.studentId.toString() === student.userId.toString()
-        );
+        const quizStudent = quiz.students.find((quizStudent) => {
+          return quizStudent.studentId === student.userId;
+        });
 
         const completed = quizStudent ? quizStudent.completed : false;
         const obtainedMarks = quizStudent ? quizStudent.obtainedMarks : 0;
@@ -373,7 +371,8 @@ router.get("/result/student/:quizId", async (req, res) => {
           ).text
         : null;
 
-      const isCorrect = isAnswered && studentAnswer && studentAnswer === question.correctOption;
+      const isCorrect =
+        isAnswered && studentAnswer && studentAnswer === question.correctOption;
 
       const questionData = {
         _id: question._id,

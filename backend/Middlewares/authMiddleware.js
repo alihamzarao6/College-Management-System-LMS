@@ -12,7 +12,7 @@ const verifyToken = (req, res, next) => {
       .json({ success: false, message: "Unauthorized - No token provided" });
   }
 
-  jwt.verify(token, "MY_JWT_SECRET_KEY", (err, decoded) => {
+  jwt.verify(token, "JWTSECRETKEY", (err, decoded) => {
     if (err) {
       return res
         .status(401)

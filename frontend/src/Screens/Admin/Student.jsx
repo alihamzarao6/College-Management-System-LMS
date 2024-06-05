@@ -261,10 +261,8 @@ const Student = () => {
       }
     };
 
-    if (!allSubjects.length) {
       fetchData();
-    }
-  }, [allSubjects]);
+  }, []);
 
   useEffect(() => {
     const fetchStudentSubjects = async () => {
