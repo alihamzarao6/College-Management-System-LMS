@@ -20,6 +20,10 @@ app.use((err, req, res, next) => {
   }
 });
 
+app.get("/", (req, res) => {
+  res.send("Hello World!");
+});
+
 // Credential Apis
 app.use("/api/student/auth", require("./routes/Student Api/studentCredential"));
 app.use("/api/faculty/auth", require("./routes/Faculty Api/facultyCredential"));
@@ -42,7 +46,11 @@ app.use("/api/question", require("./routes/Quiz Api/question"));
 app.use("/api/answer", require("./routes/Quiz Api/answer"));
 
 // Assignment api
-app.use("/api/assignment", verifyToken, require("./routes/Assignment Api/assignment"));
+app.use(
+  "/api/assignment",
+  verifyToken,
+  require("./routes/Assignment Api/assignment")
+);
 
 app.listen(port, () => {
   console.log(`Server Listening On http://localhost:${port}`);

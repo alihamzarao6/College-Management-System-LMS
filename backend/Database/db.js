@@ -1,11 +1,11 @@
-require("dotenv").config();
 const mongoose = require("mongoose");
-const mongoURI = process.env.MONGODB_URI;
 
 const connectToMongo = () => {
-  // console.log(mongoURI);
   mongoose
-    .connect("mongodb://0.0.0.0:27017/LMS_DB", { useNewUrlParser: true })
+    .connect(
+      "mongodb+srv://mainlmsuser1:lOU359Xg0cA5lQEC@cluster0.nzhcf37.mongodb.net/lms?retryWrites=true&w=majority&appName=Cluster0",
+      { useNewUrlParser: true }
+    )
     .then(() => {
       console.log("Connected to MongoDB Successfully");
     })
