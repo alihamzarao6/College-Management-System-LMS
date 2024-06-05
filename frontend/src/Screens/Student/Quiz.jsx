@@ -8,6 +8,7 @@ import { fetchStudentQuizzesSuccess, startQuizTimer, setQuizTimer, updateAnswerE
 
 import QuizDisplay from './QuizDisplay';
 import ResultPage from './ResultPage';
+import { baseApiURL } from '../../baseUrl';
 
 const Quiz = () => {
     const dispatch = useDispatch();
@@ -39,7 +40,7 @@ const Quiz = () => {
 
     useEffect(() => {
         axios
-            .get(`http://localhost:5000/api/quiz/student`, {
+            .get(`${baseApiURL}/quiz/student`, {
                 headers: {
                     Authorization: `Bearer ${jwtToken}`,
                 },
@@ -103,7 +104,7 @@ const Quiz = () => {
             toast.error('Quiz is either already attempted or the deadline has passed.');
         } else {
             try {
-                const response = await axios.get(`http://localhost:5000/api/quiz/quizzes/${quizId}`, {
+                const response = await axios.get(`${baseApiURL}/quiz/quizzes/${quizId}`, {
                     headers: {
                         Authorization: `Bearer ${jwtToken}`,
                     },

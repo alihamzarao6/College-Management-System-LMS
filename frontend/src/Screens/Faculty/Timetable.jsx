@@ -77,14 +77,14 @@ const Timetable = () => {
     };
     axios
       .get(
-        `http://localhost:5000/api/faculty/details/getDetails/${userInfo.userDetails._id}`
+        `${baseApiURL}/faculty/details/getDetails/${userInfo.userDetails._id}`
       )
       .then(async (response) => {
         const departmentIds = response.data.user.departments;
         const departmentNames = await Promise.all(
           departmentIds.map(async (id) => {
             const departmentResponse = await axios.get(
-              `http://localhost:5000/api/department/getDepartment/${id}`
+              `${baseApiURL}/department/getDepartment/${id}`
             );
             return departmentResponse.data.department.name;
           })
@@ -104,7 +104,7 @@ const Timetable = () => {
     
     axios
       .get(
-        `http://localhost:5000/api/faculty/details/getDetails/${userInfo.userDetails._id}`
+        `${baseApiURL}/faculty/details/getDetails/${userInfo.userDetails._id}`
       )
       .then((response) => {
         setSemesters(response.data.user.semesters);
@@ -121,7 +121,7 @@ const Timetable = () => {
       "Content-Type": "application/json",
     };
     axios
-      .post(`${baseApiURL()}/timetable/addTimetable`, addselected, {
+      .post(`${baseApiURL}/timetable/addTimetable`, addselected, {
         headers: headers,
       })
       .then((response) => {

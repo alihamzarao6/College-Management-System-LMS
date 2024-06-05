@@ -4,6 +4,7 @@ import axios from 'axios';
 import { FaPencilAlt, FaCheck } from 'react-icons/fa';
 
 import Assignment from "./Assignment";
+import { baseApiURL } from '../../baseUrl';
 
 const AssignmentResultPage = ({ assignmentId }) => {
     const [assignmentResult, setAssignmentResult] = useState(null);
@@ -17,7 +18,7 @@ const AssignmentResultPage = ({ assignmentId }) => {
     useEffect(() => {
         const fetchAssignmentResult = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/api/assignment/result/teacher/${assignmentId}`, {
+                const response = await axios.get(`${baseApiURL}/assignment/result/teacher/${assignmentId}`, {
                     headers: {
                         Authorization: `Bearer ${jwtToken}`,
                     },
@@ -35,7 +36,7 @@ const AssignmentResultPage = ({ assignmentId }) => {
     const handleMarkChange = async (studentId, enrollmentNo, newMarks) => {
         try {
             await axios.post(
-                `http://localhost:5000/api/assignment/grade`,
+                `${baseApiURL}/assignment/grade`,
                 {
                     assignmentId,
                     studentId,
@@ -49,7 +50,7 @@ const AssignmentResultPage = ({ assignmentId }) => {
                 }
             );
 
-            const updatedResult = await axios.get(`http://localhost:5000/api/assignment/result/teacher/${assignmentId}`, {
+            const updatedResult = await axios.get(`${baseApiURL}/assignment/result/teacher/${assignmentId}`, {
                 headers: {
                     Authorization: `Bearer ${jwtToken}`,
                 },

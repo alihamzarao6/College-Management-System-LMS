@@ -5,6 +5,7 @@ import toast from 'react-hot-toast';
 import jsPDF from 'jspdf';
 
 import Quiz from './Quiz';
+import { baseApiURL } from '../../baseUrl';
 
 const QuizResult = ({ quizId }) => {
   const selectedAnswers = useSelector((state) => state.quizData.answers || []);
@@ -15,7 +16,7 @@ const QuizResult = ({ quizId }) => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/api/quiz/result/student/${quizId}`, {
+      .get(`${baseApiURL}/quiz/result/student/${quizId}`, {
         headers: {
           Authorization: `Bearer ${jwtToken}`,
         },

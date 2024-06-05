@@ -18,7 +18,7 @@ const Timetable = () => {
       };
       axios
         .post(
-          `${baseApiURL()}/timetable/getTimetable`,
+          `${baseApiURL}/timetable/getTimetable`,
           { semester: userInfo.semester, department: userInfo.department },
           {
             headers: headers,

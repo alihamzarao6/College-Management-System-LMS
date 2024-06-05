@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import axios from 'axios';
 
 import Quiz from './Quiz';
+import { baseApiURL } from '../../baseUrl';
 
 const ResultPage = () => {
     const [quizResult, setQuizResult] = useState(null);
@@ -16,7 +17,7 @@ const ResultPage = () => {
         const fetchQuizResult = async (quizId) => {
             try {
                 const response = await axios.get(
-                    `http://localhost:5000/api/quiz/result/teacher/${quizId}`,
+                    `${baseApiURL}/quiz/result/teacher/${quizId}`,
                     {
                         headers: {
                             Authorization: `Bearer ${jwtToken}`,

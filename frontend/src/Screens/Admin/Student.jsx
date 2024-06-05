@@ -38,7 +38,7 @@ const Student = () => {
       "Content-Type": "application/json",
     };
     axios
-      .get(`${baseApiURL()}/department/getDepartment`, { headers })
+      .get(`${baseApiURL}/department/getDepartment`, { headers })
       .then((response) => {
         if (response.data.success) {
           setDepartment(response.data.departments);
@@ -91,7 +91,7 @@ const Student = () => {
       "Content-Type": "application/json",
     };
     axios
-      .post(`${baseApiURL()}/student/details/addDetails`, data, {
+      .post(`${baseApiURL}/student/details/addDetails`, data, {
         headers: headers,
       })
       .then((response) => {
@@ -100,7 +100,7 @@ const Student = () => {
           toast.success(response.data.message);
           axios
             .post(
-              `${baseApiURL()}/student/auth/register`,
+              `${baseApiURL}/student/auth/register`,
               { loginid: data.enrollmentNo, password: 112233 },
               {
                 headers: headers,
@@ -149,7 +149,7 @@ const Student = () => {
       "Content-Type": "application/json",
     };
     axios
-      .post(`${baseApiURL()}/student/details/updateDetails/${id}`, data, {
+      .post(`${baseApiURL}/student/details/updateDetails/${id}`, data, {
         headers: headers,
       })
       .then((response) => {
@@ -190,7 +190,7 @@ const Student = () => {
     };
     axios
       .post(
-        `${baseApiURL()}/student/details/getDetails`,
+        `${baseApiURL}/student/details/getDetails`,
         { enrollmentNo: search },
         { headers }
       )
@@ -249,7 +249,7 @@ const Student = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`${baseApiURL()}/subject/getSubject`);
+        const response = await axios.get(`${baseApiURL}/subject/getSubject`);
         // console.log(response.data.subject);
         if (response.data.success) {
           setAllSubjects(response.data.subject);
@@ -268,7 +268,7 @@ const Student = () => {
     const fetchStudentSubjects = async () => {
       if (id) {
         try {
-          const studentResponse = await axios.get(`${baseApiURL()}/student/details/getDetails/${id}`);
+          const studentResponse = await axios.get(`${baseApiURL}/student/details/getDetails/${id}`);
 
           if (studentResponse.data.success) {
             const user = studentResponse.data.user;

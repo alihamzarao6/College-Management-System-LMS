@@ -10,6 +10,7 @@ import { getTeacherQuizzes, setQuizId } from '../../redux/actions';
 import CreateQuiz from './CreateQuiz';
 import QuizDisplay from './QuizDisplay';
 import ResultPage from './ResultPage';
+import { baseApiURL } from '../../baseUrl';
 
 const Quiz = () => {
     const dispatch = useDispatch();
@@ -42,7 +43,7 @@ const Quiz = () => {
 
     useEffect(() => {
         axios
-            .get(`http://localhost:5000/api/quiz/teacher`, {
+            .get(`${baseApiURL}/quiz/teacher`, {
                 headers: {
                     Authorization: `Bearer ${jwtToken}`,
                 },
@@ -100,7 +101,7 @@ const Quiz = () => {
 
     const handleOpenQuiz = async (quizId) => {
         try {
-            const response = await axios.get(`http://localhost:5000/api/quiz/quizzes/${quizId}`, {
+            const response = await axios.get(`${baseApiURL}/quiz/quizzes/${quizId}`, {
                 headers: {
                     Authorization: `Bearer ${jwtToken}`,
                 },

@@ -23,7 +23,7 @@ const Login = () => {
       };
 
       axios
-        .post(`${baseApiURL()}/${selected.toLowerCase()}/auth/login`, data, {
+        .post(`${baseApiURL}/${selected.toLowerCase()}/auth/login`, data, {
           headers: headers,
         })
         .then((response) => {

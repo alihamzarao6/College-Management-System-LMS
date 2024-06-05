@@ -19,7 +19,7 @@ const Material = () => {
 
     axios
       .get(
-        `http://localhost:5000/api/student/details/getDetails/${userInfo.userDetails._id}`
+        `${baseApiURL}/student/details/getDetails/${userInfo.userDetails._id}`
       )
       .then(async (response) => {
         const subjectIds = response.data.user.subjects;
@@ -27,7 +27,7 @@ const Material = () => {
         const subjectPromises = subjectIds.map(async (id) => {
           try {
             const subjectResponse = await axios.get(
-              `http://localhost:5000/api/subject/getSubjectS/${id}`
+              `${baseApiURL}/subject/getSubjectS/${id}`
             );
             return subjectResponse.data;
           } catch (error) {
@@ -54,7 +54,7 @@ const Material = () => {
     };
     axios
       .post(
-        `${baseApiURL()}/material/getMaterial`,
+        `${baseApiURL}/material/getMaterial`,
         { subject: selected },
         { headers }
       )

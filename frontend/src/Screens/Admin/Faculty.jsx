@@ -78,7 +78,7 @@ const Faculty = () => {
       "Content-Type": "application/json",
     };
     axios
-      .post(`${baseApiURL()}/faculty/details/addDetails`, data, {
+      .post(`${baseApiURL}/faculty/details/addDetails`, data, {
         headers: headers,
       })
       .then((response) => {
@@ -87,7 +87,7 @@ const Faculty = () => {
           toast.success(response.data.message);
           axios
             .post(
-              `${baseApiURL()}/faculty/auth/register`,
+              `${baseApiURL}/faculty/auth/register`,
               { loginid: data.employeeId, password: 112233 },
               {
                 headers: headers,
@@ -141,7 +141,7 @@ const Faculty = () => {
       "Content-Type": "application/json",
     };
     axios
-      .post(`${baseApiURL()}/faculty/details/updateDetails/${id}`, data, {
+      .post(`${baseApiURL}/faculty/details/updateDetails/${id}`, data, {
         headers: headers,
       })
       .then((response) => {
@@ -187,7 +187,7 @@ const Faculty = () => {
     };
     axios
       .post(
-        `${baseApiURL()}/faculty/details/getDetails`,
+        `${baseApiURL}/faculty/details/getDetails`,
         { employeeId: search },
         { headers }
       )
@@ -248,7 +248,7 @@ const Faculty = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`${baseApiURL()}/subject/getSubject`);
+        const response = await axios.get(`${baseApiURL}/subject/getSubject`);
         // console.log(response.data.subject);
         if (response.data.success) {
           setAllSubjects(response.data.subject);
@@ -266,7 +266,7 @@ const Faculty = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`${baseApiURL()}/department/getDepartment`);
+        const response = await axios.get(`${baseApiURL}/department/getDepartment`);
         // console.log(response.data.subject);
         if (response.data.success) {
           setAllDepartments(response.data.departments);
@@ -285,7 +285,7 @@ const Faculty = () => {
     const fetchTeacherSubjects = async () => {
       if (id) {
         try {
-          const studentResponse = await axios.get(`${baseApiURL()}/faculty/details/getDetails/${id}`);
+          const studentResponse = await axios.get(`${baseApiURL}/faculty/details/getDetails/${id}`);
 
           if (studentResponse.data.success) {
             const user = studentResponse.data.user;

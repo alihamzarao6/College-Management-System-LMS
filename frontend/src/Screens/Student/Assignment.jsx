@@ -6,6 +6,7 @@ import UploadAssignment from "./UploadAssignment";
 import toast from 'react-hot-toast';
 import { fetchStudentAssignmentsSuccess } from '../../redux/actions';
 import { FaDownload } from 'react-icons/fa';
+import { baseApiURL } from '../../baseUrl';
 
 const Assignment = () => {
     const dispatch = useDispatch();
@@ -31,7 +32,7 @@ const Assignment = () => {
 
     useEffect(() => {
         axios
-            .get(`http://localhost:5000/api/assignment/student`, {
+            .get(`${baseApiURL}/assignment/student`, {
                 headers: {
                     Authorization: `Bearer ${jwtToken}`,
                 },
@@ -98,7 +99,7 @@ const Assignment = () => {
 
     const handleOpenAssignment = async (assignmentId) => {
         try {
-            const response = await axios.get(`http://localhost:5000/api/assignment/assignments/${assignmentId}`, {
+            const response = await axios.get(`${baseApiURL}/assignment/assignments/${assignmentId}`, {
                 headers: {
                     Authorization: `Bearer ${jwtToken}`,
                 },

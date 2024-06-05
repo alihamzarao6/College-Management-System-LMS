@@ -42,7 +42,7 @@ const Notice = () => {
       "Content-Type": "application/json",
     };
     axios
-      .post(`${baseApiURL()}/notice/getNotice`, { ...data, teacherId: userInfo._id, }, {
+      .post(`${baseApiURL}/notice/getNotice`, { ...data, teacherId: userInfo._id, }, {
         headers: headers,
       })
       .then((response) => {
@@ -73,7 +73,7 @@ const Notice = () => {
       "Content-Type": "application/json",
     };
     axios
-      .post(`${baseApiURL()}/notice/getNotice`, data, {
+      .post(`${baseApiURL}/notice/getNotice`, data, {
         headers: headers,
       })
       .then((response) => {
@@ -97,7 +97,7 @@ const Notice = () => {
       "Content-Type": "application/json",
     };
     axios
-      .post(`${baseApiURL()}/notice/addNotice`, { ...data, teacherId: userInfo._id, }, {
+      .post(`${baseApiURL}/notice/addNotice`, { ...data, teacherId: userInfo._id, }, {
         headers: headers,
       })
       .then((response) => {
@@ -122,7 +122,7 @@ const Notice = () => {
       "Content-Type": "application/json",
     };
     axios
-      .delete(`${baseApiURL()}/notice/deleteNotice/${id}`, {
+      .delete(`${baseApiURL}/notice/deleteNotice/${id}`, {
         headers: headers,
       })
       .then((response) => {
@@ -146,7 +146,7 @@ const Notice = () => {
       "Content-Type": "application/json",
     };
     axios
-      .post(`${baseApiURL()}/notice/updateNotice/${id}`, { ...data, teacherId: userInfo._id, }, {
+      .post(`${baseApiURL}/notice/updateNotice/${id}`, { ...data, teacherId: userInfo._id, }, {
         headers: headers,
       })
       .then((response) => {

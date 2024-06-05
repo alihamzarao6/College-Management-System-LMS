@@ -7,6 +7,7 @@ import { createQuizFailure } from '../../redux/actions';
 
 import Heading from '../../components/Heading';
 import Quiz from './Quiz';
+import { baseApiURL } from '../../baseUrl';
 
 const CreateQuiz = () => {
     const [departments, setDepartments] = useState([]);
@@ -38,14 +39,14 @@ const CreateQuiz = () => {
     useEffect(() => {
         axios
             .get(
-                `http://localhost:5000/api/faculty/details/getDetails/${userInfo.userDetails._id}`
+                `${baseApiURL}/faculty/details/getDetails/${userInfo.userDetails._id}`
             )
             .then(async (response) => {
                 const departmentIds = response.data.user.departments;
                 const departmentNames = await Promise.all(
                     departmentIds.map(async (id) => {
                         const departmentResponse = await axios.get(
-                            `http://localhost:5000/api/department/getDepartment/${id}`
+                            `${baseApiURL}/department/getDepartment/${id}`
                         );
                         return departmentResponse.data.department.name;
                     })
@@ -59,7 +60,7 @@ const CreateQuiz = () => {
 
         axios
             .get(
-                `http://localhost:5000/api/faculty/details/getDetails/${userInfo.userDetails._id}`
+                `${baseApiURL}/faculty/details/getDetails/${userInfo.userDetails._id}`
             )
             .then((response) => {
                 setSemesters(response.data.user.semesters);
@@ -70,14 +71,14 @@ const CreateQuiz = () => {
 
         axios
             .get(
-                `http://localhost:5000/api/faculty/details/getDetails/${userInfo.userDetails._id}`
+                `${baseApiURL}/faculty/details/getDetails/${userInfo.userDetails._id}`
             )
             .then(async (response) => {
                 const subjectIds = response.data.user.subjects;
                 const subjectNames = await Promise.all(
                     subjectIds.map(async (id) => {
                         const subjectResponse = await axios.get(
-                            `http://localhost:5000/api/subject/getSubject/${id}`
+                            `${baseApiURL}/subject/getSubject/${id}`
                         );
                         return subjectResponse.data.subject.name;
                     })
@@ -153,7 +154,7 @@ const CreateQuiz = () => {
             }
 
             const response = await axios.post(
-                'http://localhost:5000/api/quiz/create',
+                '${baseApiURL}/quiz/create',
                 {
                     semester: selectedSemester,
                     subject: selectedSubject,

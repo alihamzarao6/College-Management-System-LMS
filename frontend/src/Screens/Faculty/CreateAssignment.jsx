@@ -7,6 +7,7 @@ import { storage } from '../../firebase/config';
 
 import Heading from '../../components/Heading';
 import Assignment from './Assignment';
+import { baseApiURL } from '../../baseUrl';
 
 const CreateAssignment = () => {
     const [departments, setDepartments] = useState([]);
@@ -31,14 +32,14 @@ const CreateAssignment = () => {
     useEffect(() => {
         axios
             .get(
-                `http://localhost:5000/api/faculty/details/getDetails/${userInfo.userDetails._id}`
+                `${baseApiURL}/faculty/details/getDetails/${userInfo.userDetails._id}`
             )
             .then(async (response) => {
                 const departmentIds = response.data.user.departments;
                 const departmentNames = await Promise.all(
                     departmentIds.map(async (id) => {
                         const departmentResponse = await axios.get(
-                            `http://localhost:5000/api/department/getDepartment/${id}`
+                            `${baseApiURL}/department/getDepartment/${id}`
                         );
                         return departmentResponse.data.department.name;
                     })
@@ -52,7 +53,7 @@ const CreateAssignment = () => {
 
         axios
             .get(
-                `http://localhost:5000/api/faculty/details/getDetails/${userInfo.userDetails._id}`
+                `${baseApiURL}/faculty/details/getDetails/${userInfo.userDetails._id}`
             )
             .then((response) => {
                 setSemesters(response.data.user.semesters);
@@ -63,14 +64,14 @@ const CreateAssignment = () => {
 
         axios
             .get(
-                `http://localhost:5000/api/faculty/details/getDetails/${userInfo.userDetails._id}`
+                `${baseApiURL}/faculty/details/getDetails/${userInfo.userDetails._id}`
             )
             .then(async (response) => {
                 const subjectIds = response.data.user.subjects;
                 const subjectNames = await Promise.all(
                     subjectIds.map(async (id) => {
                         const subjectResponse = await axios.get(
-                            `http://localhost:5000/api/subject/getSubject/${id}`
+                            `${baseApiURL}/subject/getSubject/${id}`
                         );
                         return subjectResponse.data.subject.name;
                     })
@@ -124,7 +125,7 @@ const CreateAssignment = () => {
                         const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
 
                         const response = await axios.post(
-                            'http://localhost:5000/api/assignment/create',
+                            '${baseApiURL}/assignment/create',
                             {
                                 semester: selectedSemester,
                                 subject: selectedSubject,

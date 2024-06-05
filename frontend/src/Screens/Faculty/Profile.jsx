@@ -23,7 +23,7 @@ const Profile = () => {
     };
     axios
       .post(
-        `${baseApiURL()}/${router.state.type}/details/getDetailsDep`,
+        `${baseApiURL}/${router.state.type}/details/getDetailsDep`,
         { employeeId: router.state.loginid },
         {
           headers: headers,
@@ -54,7 +54,7 @@ const Profile = () => {
     };
     axios
       .post(
-        `${baseApiURL()}/faculty/auth/login`,
+        `${baseApiURL}/faculty/auth/login`,
         { loginid: router.state.loginid, password: password.current },
         {
           headers: headers,
@@ -79,7 +79,7 @@ const Profile = () => {
     };
     axios
       .post(
-        `${baseApiURL()}/faculty/auth/update/${id}`,
+        `${baseApiURL}/faculty/auth/update/${id}`,
         { loginid: router.state.loginid, password: password.new },
         {
           headers: headers,

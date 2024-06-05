@@ -7,6 +7,7 @@ import { getTeacherAssignments } from '../../redux/actions';
 import Heading from '../../components/Heading';
 import CreateAssignment from './CreateAssignment';
 import AssignmentResultPage from './AssignmentResultPage';
+import { baseApiURL } from '../../baseUrl';
 
 const Assignment = () => {
     const dispatch = useDispatch();
@@ -39,7 +40,7 @@ const Assignment = () => {
 
     useEffect(() => {
         axios
-            .get(`http://localhost:5000/api/assignment/teacher`, {
+            .get(`${baseApiURL}/assignment/teacher`, {
                 headers: {
                     Authorization: `Bearer ${jwtToken}`,
                 },
@@ -97,7 +98,7 @@ const Assignment = () => {
 
     const handleOpenAssignment = async (assignmentId) => {
         try {
-            const response = await axios.get(`http://localhost:5000/api/assignment/assignments/${assignmentId}`, {
+            const response = await axios.get(`${baseApiURL}/assignment/assignments/${assignmentId}`, {
                 headers: {
                     Authorization: `Bearer ${jwtToken}`,
                 },

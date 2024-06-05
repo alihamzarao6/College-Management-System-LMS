@@ -7,6 +7,7 @@ import { storage } from '../../firebase/config';
 
 import Heading from '../../components/Heading';
 import Assignment from './Assignment';
+import { baseApiURL } from '../../baseUrl';
 
 const UploadAssignment = ({ assignmentId }) => {
     const jwtToken = useSelector((state) => state.jwtToken);
@@ -83,7 +84,7 @@ const UploadAssignment = ({ assignmentId }) => {
             }
 
             const response = await axios.post(
-                'http://localhost:5000/api/assignment/submit',
+                `${baseApiURL}/assignment/submit`,
                 data,
                 {
                     headers: {

@@ -5,6 +5,7 @@ import toast from 'react-hot-toast';
 
 import { updateAnswer, updateAnswerEmpty, decrementQuizTimer, resetQuizTimer, updateRemainingTime, resetQuizInProgress } from '../../redux/actions';
 import Quiz from './Quiz';
+import { baseApiURL } from '../../baseUrl';
 
 const QuizDisplay = ({ quizData, userId }) => {
   const dispatch = useDispatch();
@@ -34,7 +35,7 @@ const QuizDisplay = ({ quizData, userId }) => {
       };
 
       axios
-        .post('http://localhost:5000/api/quiz/submit', submitData, {
+        .post(`${baseApiURL}/quiz/submit`, submitData, {
           headers: {
             Authorization: `Bearer ${jwtToken}`,
           },
@@ -108,7 +109,7 @@ const QuizDisplay = ({ quizData, userId }) => {
     };
 
     axios
-      .post('http://localhost:5000/api/quiz/submit', submitData, {
+      .post(`${baseApiURL}/quiz/submit`, submitData, {
         headers: {
           Authorization: `Bearer ${jwtToken}`,
         },

@@ -17,7 +17,7 @@ const Department = () => {
 
   const getDepartmentHandler = () => {
     axios
-      .get(`${baseApiURL()}/department/getDepartment`)
+      .get(`${baseApiURL}/department/getDepartment`)
       .then((response) => {
         if (response.data.success) {
           setDepartment(response.data.departments);
@@ -37,7 +37,7 @@ const Department = () => {
       "Content-Type": "application/json",
     };
     axios
-      .post(`${baseApiURL()}/department/addDepartment`, data, {
+      .post(`${baseApiURL}/department/addDepartment`, data, {
         headers: headers,
       })
       .then((response) => {
@@ -64,7 +64,7 @@ const Department = () => {
         "Content-Type": "application/json",
       };
       axios
-        .delete(`${baseApiURL()}/department/deleteDepartment/${id}`, {
+        .delete(`${baseApiURL}/department/deleteDepartment/${id}`, {
           headers: headers,
         })
         .then((response) => {

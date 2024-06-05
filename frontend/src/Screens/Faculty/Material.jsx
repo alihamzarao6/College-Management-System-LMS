@@ -27,14 +27,14 @@ const Material = () => {
     toast.loading("Loading Subjects");
     axios
       .get(
-        `http://localhost:5000/api/faculty/details/getDetails/${userInfo.userDetails._id}`
+        `${baseApiURL}/faculty/details/getDetails/${userInfo.userDetails._id}`
       )
       .then(async (response) => {
         const subjectIds = response.data.user.subjects;
         const subjectNames = await Promise.all(
           subjectIds.map(async (id) => {
             const subjectResponse = await axios.get(
-              `http://localhost:5000/api/subject/getSubject/${id}`
+              `${baseApiURL}/subject/getSubject/${id}`
             );
             return subjectResponse.data.subject.name;
           })
@@ -85,7 +85,7 @@ const Material = () => {
       "Content-Type": "application/json",
     };
     axios
-      .post(`${baseApiURL()}/material/addMaterial`, selected, {
+      .post(`${baseApiURL}/material/addMaterial`, selected, {
         headers: headers,
       })
       .then((response) => {

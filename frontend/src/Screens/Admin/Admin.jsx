@@ -58,7 +58,7 @@ const Admin = () => {
       "Content-Type": "application/json",
     };
     axios
-      .post(`${baseApiURL()}/admin/details/addDetails`, data, {
+      .post(`${baseApiURL}/admin/details/addDetails`, data, {
         headers: headers,
       })
       .then((response) => {
@@ -67,7 +67,7 @@ const Admin = () => {
           toast.success(response.data.message);
           axios
             .post(
-              `${baseApiURL()}/Admin/auth/register`,
+              `${baseApiURL}/Admin/auth/register`,
               { loginid: data.employeeId, password: 112233 },
               {
                 headers: headers,
@@ -113,7 +113,7 @@ const Admin = () => {
       "Content-Type": "application/json",
     };
     axios
-      .post(`${baseApiURL()}/admin/details/updateDetails/${id}`, data, {
+      .post(`${baseApiURL}/admin/details/updateDetails/${id}`, data, {
         headers: headers,
       })
       .then((response) => {
@@ -151,7 +151,7 @@ const Admin = () => {
     };
     axios
       .post(
-        `${baseApiURL()}/admin/details/getDetails`,
+        `${baseApiURL}/admin/details/getDetails`,
         { employeeId: search },
         { headers }
       )
